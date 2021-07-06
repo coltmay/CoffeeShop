@@ -18,5 +18,8 @@ namespace CoffeeShop.Models
 
         [Required]
         public int BeanVarietyId { get; set; }
+
+        [Required]
+        public BeanVariety BeanVariety { get; set; }
     }
 }
