@@ -89,8 +89,8 @@ namespace CoffeeShop.Repositories
             }
         }
 
-        //TODO UNFINISHED
-        public void Add(BeanVariety variety)
+        //TODO Test
+        public void Add(Coffee coffee)
         {
             using (var conn = Connection)
             {
@@ -98,21 +98,13 @@ namespace CoffeeShop.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        INSERT INTO BeanVariety ([Name], Region, Notes)
+                        INSERT INTO Coffee (Title, BeanVarietyId)
                         OUTPUT INSERTED.ID
-                        VALUES (@name, @region, @notes)";
-                    cmd.Parameters.AddWithValue("@name", variety.Name);
-                    cmd.Parameters.AddWithValue("@region", variety.Region);
-                    if (variety.Notes == null)
-                    {
-                        cmd.Parameters.AddWithValue("@notes", DBNull.Value);
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@notes", variety.Notes);
-                    }
+                        VALUES (@title, @beanVarietyId)";
+                    cmd.Parameters.AddWithValue("@title", coffee.Title);
+                    cmd.Parameters.AddWithValue("@beanVarietyId", coffee.BeanVarietyId);
 
-                    variety.Id = (int)cmd.ExecuteScalar();
+                    coffee.Id = (int)cmd.ExecuteScalar();
                 }
             }
         }
