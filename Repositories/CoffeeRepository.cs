@@ -21,7 +21,7 @@ namespace CoffeeShop.Repositories
             get { return new SqlConnection(_connectionString); }
         }
 
-        //TODO TEST
+
         public List<Coffee> GetAll()
         {
             using (var conn = Connection)
@@ -53,7 +53,7 @@ namespace CoffeeShop.Repositories
             }
         }
 
-        //TODO Test
+
         public Coffee Get(int id)
         {
             using (var conn = Connection)
@@ -89,7 +89,7 @@ namespace CoffeeShop.Repositories
             }
         }
 
-        //TODO Test
+
         public void Add(Coffee coffee)
         {
             using (var conn = Connection)
@@ -109,7 +109,7 @@ namespace CoffeeShop.Repositories
             }
         }
 
-        //TODO Test
+
         public void Update(Coffee coffee)
         {
             using (var conn = Connection)
@@ -131,7 +131,7 @@ namespace CoffeeShop.Repositories
             }
         }
 
-        //TODO Test
+
         public void Delete(int id)
         {
             using (var conn = Connection)
