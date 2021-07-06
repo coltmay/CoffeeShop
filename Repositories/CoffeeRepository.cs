@@ -109,8 +109,8 @@ namespace CoffeeShop.Repositories
             }
         }
 
-        //TODO UNFINISHED
-        public void Update(BeanVariety variety)
+        //TODO Test
+        public void Update(Coffee coffee)
         {
             using (var conn = Connection)
             {
@@ -118,22 +118,13 @@ namespace CoffeeShop.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        UPDATE BeanVariety 
-                           SET [Name] = @name, 
-                               Region = @region, 
-                               Notes = @notes
-                         WHERE Id = @id";
-                    cmd.Parameters.AddWithValue("@id", variety.Id);
-                    cmd.Parameters.AddWithValue("@name", variety.Name);
-                    cmd.Parameters.AddWithValue("@region", variety.Region);
-                    if (variety.Notes == null)
-                    {
-                        cmd.Parameters.AddWithValue("@notes", DBNull.Value);
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@notes", variety.Notes);
-                    }
+                        UPDATE Coffee 
+                        SET Title = @title, 
+                            BeanVarietyId = @beanVarietyId
+                        WHERE Id = @id";
+                    cmd.Parameters.AddWithValue("@id", coffee.Id);
+                    cmd.Parameters.AddWithValue("@title", coffee.Title);
+                    cmd.Parameters.AddWithValue("@beanVarietyId", coffee.BeanVarietyId);
 
                     cmd.ExecuteNonQuery();
                 }
